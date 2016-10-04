@@ -129,6 +129,12 @@ function MarkerClusterer(map, opt_markers, opt_options) {
    * @type {string}
    * @private
    */
+  this.textColor_ = options['textColor'] || '#000000';
+
+  /**
+   * @type {string}
+   * @private
+   */
   this.imageExtension_ = options['imageExtension'] ||
       this.MARKER_CLUSTER_IMAGE_EXTENSION_;
 
@@ -248,7 +254,8 @@ MarkerClusterer.prototype.setupStyles_ = function() {
     this.styles_.push({
       url: this.imagePath_ + (i + 1) + '.' + this.imageExtension_,
       height: size,
-      width: size
+      width: size,
+      textColor: this.textColor_
     });
   }
 };
