@@ -1049,8 +1049,16 @@ function ClusterIcon(cluster, styles, opt_padding) {
 ClusterIcon.prototype.triggerClusterClick = function(event) {
   var markerClusterer = this.cluster_.getMarkerClusterer();
 
-  // Trigger the clusterclick event.
+  // Trigger the clusterdblclick event.
   google.maps.event.trigger(markerClusterer, 'clusterclick', this.cluster_, event);
+
+};
+
+ClusterIcon.prototype.triggerClusterDblClick = function(event) {
+  var markerClusterer = this.cluster_.getMarkerClusterer();
+
+  // Trigger the clusterclick event.
+  google.maps.event.trigger(markerClusterer, 'clusterdblclick', this.cluster_, event);
 
   if (markerClusterer.isZoomOnClick()) {
     // Zoom into the cluster.
@@ -1079,7 +1087,21 @@ ClusterIcon.prototype.onAdd = function() {
   google.maps.event.addDomListener(this.div_, 'click', function(event) {
     // Only perform click when not preceded by a drag
     if (!isDragging) {
+      event.cancelBubble = true;
+      if (event.stopPropagation) {
+        event.stopPropagation();
+      }
       that.triggerClusterClick(event);
+    }
+  });
+  google.maps.event.addDomListener(this.div_, 'dblclick', function(event) {
+    // Only perform click when not preceded by a drag
+    if (!isDragging) {
+      event.cancelBubble = true;
+      if (event.stopPropagation) {
+        event.stopPropagation();
+      }
+      that.triggerClusterDblClick(event);
     }
   });
   google.maps.event.addDomListener(this.div_, 'mousedown', function() {
