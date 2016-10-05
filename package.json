@@ -1,6 +1,6 @@
 {
   "name": "mng-js-marker-clusterer",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "The library creates and manages per-zoom-level clusters for large amounts of markers. Google API v3. It's a fork based on https://github.com/googlemaps/js-marker-clusterer, adding some callbacks for click and dblclick event on marker clusterer",
   "main": "src/markerclusterer.js",
   "directories": {
