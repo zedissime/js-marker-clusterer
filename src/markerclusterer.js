@@ -792,7 +792,7 @@ MarkerClusterer.prototype.createClusters_ = function() {
   var bounds = this.getExtendedBounds(mapBounds);
 
   for (var i = 0, marker; marker = this.markers_[i]; i++) {
-    if (!marker.isAdded && this.isMarkerInBounds_(marker, bounds)) {
+    if (!marker.isAdded && this.isMarkerInBounds_(marker, bounds) && marker.visible) {
       this.addToClosestCluster_(marker);
     }
   }
